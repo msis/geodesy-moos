@@ -1,0 +1,45 @@
+language: cpp
+
+sudo: required
+
+os:
+    - linux
+    - osx
+
+compiler:
+    - gcc
+
+env:
+    - BUILD_TYPE=Release
+
+before_script:
+    - if [ "`uname`" != "Darwin" ] ; then export MOOS_CXX_FLAGS="-fPIC -Wno-long-long"; fi
+    - cd ..
+    - git clone -b wOnlineCI --depth=1 https://github.com/msis/core-moos
+    - cd core-moos
+    - mkdir build
+    - cd build
+    - cmake -DENABLE_EXPORT=ON -DUSE_ASYNC_COMMS=ON -DTIME_WARP_AGGLOMERATION=0.4 -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_CXX_FLAGS=$MOOS_CXX_FLAGS ..
+    - cmake --build . --config Release
+    - sudo cmake --build . --config Release --target install
+    - cd $TRAVIS_BUILD_DIR/..
+    - git clone -b 4.9.2 --depth=1 https://github.com/osgeo/proj.4 proj-4
+    - cd proj-4
+    - mkdir build
+    - cd build 
+    - cmake -DBUILD_TESTING=OFF -DBUILD_PROJ4_TESTS=OFF ../
+    - cmake --build . --config Release
+    - sudo cmake --build . --config Release --target install
+    - export PROJ4_INCLUDE_DIR=$PWD/../src
+    - export PROJ4_LIB_DIR=$PWD/lib
+    - cd $TRAVIS_BUILD_DIR
+    - mkdir build/
+
+
+script:
+    - cd build/
+    - cmake -DPROJ4_INCLUDE_DIRS=$PROJ4_INCLUDE_DIR -DPROJ4_LIB_PATH=$PROJ4_LIB_DIR -DCMAKE_CXX_FLAGS=$MOOS_CXX_FLAGS ../
+    - cmake --build . --config Release
+
+after_script:
+    - sudo cmake --build . --config Release --target install
