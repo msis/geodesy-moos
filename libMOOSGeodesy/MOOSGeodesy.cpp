@@ -27,6 +27,12 @@
 
 #include "include/MOOS/libMOOSGeodesy/MOOSGeodesy.h"
 
+
+#ifdef _WIN32
+#include <float.h>
+#define isnan _isnan
+#endif
+
 CMOOSGeodesy::CMOOSGeodesy() : m_sUTMZone(0),
                                m_dOriginEasting(0),
                                m_dOriginNorthing(0),
