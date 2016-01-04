@@ -33,7 +33,7 @@ init:
     - cd proj-4
     - mkdir build
     - cd build 
-    - cmake -G "%VS_FULL%" -DBUILD_TESTING=OFF -DBUILD_PROJ4_TESTS=OFF ../
+    - cmake -G "%VS_FULL%" -DCMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE=../bin -DBUILD_TESTING=OFF -DBUILD_PROJ4_TESTS=OFF ../
     - cmake --build . --config Release
     - cmake --build . --config Release --target install
     - set PROJ4_INCLUDE_DIR=%PWD%/../src
