@@ -30,6 +30,10 @@
 
 #ifdef _WIN32
 #include <float.h>
+// see this workaround C2039: https://support.microsoft.com/en-us/kb/243444
+namespace std {
+#include <cstdlib>
+};
 #define isnan _isnan
 #endif
 
