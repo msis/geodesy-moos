@@ -29,13 +29,9 @@
 
 
 #ifdef _WIN32
-#include <float.h>
-// see this workaround C2039: https://support.microsoft.com/en-us/kb/243444
-namespace std {
-#include <cstdlib>
-};
 #include "windows.h"
 #include "winbase.h"
+#include "winnt.h"
 #define isnan _isnan
 #endif
 
