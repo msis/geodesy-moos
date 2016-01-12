@@ -37,7 +37,7 @@ init:
     - cmake --build . --config Release
     - cmake --build . --config Release --target install
     - set PROJ4_INCLUDE_DIR=%PWD%/../src
-    - set PROJ4_LIB_DIR=%PWD%/lib
+    - set PROJ4_LIB_DIR=%PWD%/lib/Release
     - cd %APPVEYOR_BUILD_FOLDER%
     - mkdir build
 
