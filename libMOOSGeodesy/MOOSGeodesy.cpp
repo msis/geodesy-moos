@@ -20,6 +20,15 @@
 // You should have received a copy of the GNU General Public License
 // along with Goby.  If not, see <http://www.gnu.org/licenses/>.
 
+
+#ifdef _WIN32
+    #include "windows.h"
+    #include "winbase.h"
+    #include "winnt.h"
+    #define isnan _isnan
+    using namespace std;
+#endif
+
 #include <cmath>
 #include <sstream>
 #include <iostream>
@@ -28,12 +37,6 @@
 #include "include/MOOS/libMOOSGeodesy/MOOSGeodesy.h"
 
 
-#ifdef _WIN32
-#include "windows.h"
-#include "winbase.h"
-#include "winnt.h"
-#define isnan _isnan
-#endif
 
 CMOOSGeodesy::CMOOSGeodesy() : m_sUTMZone(0),
                                m_dOriginEasting(0),
