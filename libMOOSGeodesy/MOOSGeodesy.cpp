@@ -34,6 +34,8 @@
 namespace std {
 #include <cstdlib>
 };
+#include "windows.h"
+#include "winbase.h"
 #define isnan _isnan
 #endif
 
