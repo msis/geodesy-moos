@@ -6,23 +6,21 @@ SET(SOURCES
 
 include(PlatformDefines)
 
-include_directories(${PROJ4_INCLUDE_DIRS})
-link_directories(${PROJ4_LIB_PATH})
-
 ##########################
 # Packages / Dependencies
+find_package(PROJ4 4)
+
 set(INCLUDE_ROOTS  
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
     
 set(${LIBNAME}_DEPEND_INCLUDE_DIRS
     ${INCLUDE_ROOTS} 
+    ${PROJ4_INCLUDE_DIRS} ${PROJ4_DEPEND_INCLUDE_DIRS}
     CACHE INTERNAL
     "List of include dirs for the dependencies of ${LIBNAME}"    
 )
 list(REMOVE_DUPLICATES ${LIBNAME}_DEPEND_INCLUDE_DIRS)
-
-find_package(PROJ4 4)
 
 if(UNIX)
     set(DEPENDENCIES m proj)
@@ -31,6 +29,7 @@ endif(UNIX)
 
 set(${LIBNAME}_DEPEND_LIBRARIES
     ${DEPENDENCIES}
+    ${PROJ4_LIBRARIES} ${PROJ4_DEPEND_LIBRARIES}
     CACHE INTERNAL
     "List of libraries which are dependencies of ${LIBNAME}"    
 )
