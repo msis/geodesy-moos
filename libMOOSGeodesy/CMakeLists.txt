@@ -22,7 +22,7 @@ set(${LIBNAME}_DEPEND_INCLUDE_DIRS
 )
 list(REMOVE_DUPLICATES ${LIBNAME}_DEPEND_INCLUDE_DIRS)
 
-find_package(proj 4)
+find_package(Proj4 4)
 
 if(UNIX)
     set(DEPENDENCIES m proj)
