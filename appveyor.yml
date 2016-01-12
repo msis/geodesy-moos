@@ -43,7 +43,7 @@ init:
 
 build_script:
     - cd build
-    - cmake -G "%VS_FULL%" -DProj4_DIR="c:/OSGeo4W/cmake/" -DPROJ4_INCLUDE_DIRS=$PROJ4_INCLUDE_DIR -DPROJ4_LIB_PATH=$PROJ4_LIB_DIR -DCMAKE_BUILD_TYPE=$BUILD_TYPE ../
+    - cmake -G "%VS_FULL%" -DPROJ4_DIR="c:/OSGeo4W/cmake/" -DPROJ4_INCLUDE_DIRS=$PROJ4_INCLUDE_DIR -DPROJ4_LIB_PATH=$PROJ4_LIB_DIR -DCMAKE_BUILD_TYPE=$BUILD_TYPE ../
     - cmake --build . --config Release
 
 on_success:
