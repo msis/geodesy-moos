@@ -26,7 +26,6 @@
     #include "winbase.h"
     #include "winnt.h"
     #define isnan _isnan
-    using namespace std;
 #endif
 
 #include <cmath>
@@ -244,7 +243,8 @@ bool CMOOSGeodesy::LatLong2LocalGrid(double lat,
 
 bool CMOOSGeodesy::LocalGrid2LatLong(double dfEast, double dfNorth, double &dfLat, double &dfLon) 
 {
-  if(std::isnan(dfEast) || std::isnan(dfNorth))  // changed to std::isnan, mikerb AUG/04/14
+  using namespace std;  
+  if(isnan(dfEast) || isnan(dfNorth))  // changed to just isnan, because of windows (msis 12-01-15), from std::isnan, mikerb AUG/04/14
     return(false);
 
     //(semimajor axis)
