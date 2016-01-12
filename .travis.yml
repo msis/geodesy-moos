@@ -38,7 +38,7 @@ before_script:
 
 script:
     - cd build/
-    - cmake -DPROJ4_INCLUDE_DIRS=$PROJ4_INCLUDE_DIR -DPROJ4_LIB_PATH=$PROJ4_LIB_DIR -DCMAKE_CXX_FLAGS=$MOOS_CXX_FLAGS ../
+    - cmake -DCMAKE_CXX_FLAGS=$MOOS_CXX_FLAGS ../
     - cmake --build . --config Release
 
 after_script:

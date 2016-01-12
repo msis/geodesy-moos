@@ -36,14 +36,12 @@ init:
     - cmake -G "%VS_FULL%" -DCMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE=../bin -DBUILD_TESTING=OFF -DBUILD_PROJ4_TESTS=OFF ../
     - cmake --build . --config Release
     - cmake --build . --config Release --target install
-    - set PROJ4_INCLUDE_DIR=%PWD%/../src
-    - set PROJ4_LIB_DIR=%PWD%/lib/Release
     - cd %APPVEYOR_BUILD_FOLDER%
     - mkdir build
 
 build_script:
     - cd build
-    - cmake -G "%VS_FULL%" -DPROJ4_DIR="c:/OSGeo4W/cmake/" -DPROJ4_INCLUDE_DIRS=$PROJ4_INCLUDE_DIR -DPROJ4_LIB_PATH=$PROJ4_LIB_DIR -DCMAKE_BUILD_TYPE=$BUILD_TYPE ../
+    - cmake -G "%VS_FULL%" -DPROJ4_DIR="c:/OSGeo4W/cmake/" -DCMAKE_BUILD_TYPE=$BUILD_TYPE ../
     - cmake --build . --config Release
 
 on_success:
