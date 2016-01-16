@@ -38,3 +38,6 @@ build_script:
 
 on_success:
     - cmake --build . --config Release --target install
+
+cache:
+    - %APPVEYOR_BUILD_FOLDER%\..\proj-4 -> appveyor.yml

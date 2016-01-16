@@ -34,3 +34,7 @@ script:
 
 after_script:
     - sudo cmake --build . --config Release --target install
+
+cache:
+    directories:
+    -$TRAVIS_BUILD_DIR/../proj-4
